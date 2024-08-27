@@ -3,16 +3,25 @@ run-name: ${{github.actor}} is testing out GitHub Actions
 on: [push]
 jobs:
   Explore-GitHub-Actions:
-  runs-on: ubuntu-latest
-  steps:
-    -run: echo "¿ The job was automatically triggered by a ${{github.event_name}} event."
-    -run: echo "& This job is now running on a ${{runner.os}} server hosted by GitHub!"
-    -run: echo "O The name of your branch is ${{github.ref}} and your repository is ${{github.repository}}."
-    -name: List files in the repository
-    run: |
-        Is ${{github.workspace}}
-    -run: echo " This job's status is ${{job.status}}."
-    -run: python --version
-    -run: java --version
-    -run: mvn --version
-    -run: docker -version
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo event name
+        run: echo "¿ The job was automatically triggered by a ${{github.event_name}} event."
+      - name: Echo runner OS
+        run: echo "& This job is now running on a ${{runner.os}} server hosted by GitHub!"
+      - name: Echo branch and repository
+        run: echo "O The name of your branch is ${{github.ref}} and your repository is ${{github.repository}}."
+      - name: List files in the repository
+        run: |
+          ls ${{github.workspace}}
+      - name: Echo job status
+        run: echo " This job's status is ${{job.status}}."
+      - name: Check Python version
+        run: python --version
+      - name: Check Java version
+        run: java --version
+      - name: Check Maven version
+        run: mvn --version
+      - name: Check Docker version
+        run: docker --version
+  
